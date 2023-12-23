@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:suitmedia_test/utils/colors.dart';
 import 'package:suitmedia_test/utils/routes.dart';
@@ -20,8 +21,12 @@ class _SecondScreenState extends State<SecondScreen> {
         shape: const Border(
           bottom: BorderSide(color: Color(0xFFE2E3E4), width: 0.5),
         ),
-        leading: const Icon(Icons.arrow_back_ios,
-            color: Color(0xFF554AF0), size: 24),
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () => Get.back(),
+          child: SvgPicture.asset('assets/images/ic_back.svg',
+              width: 24, height: 24, fit: BoxFit.scaleDown),
+        ),
         title: const Text("Second Screen"),
       ),
       body: Padding(
