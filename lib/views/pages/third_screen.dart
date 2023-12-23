@@ -27,46 +27,49 @@ class ThirdScreen extends StatelessWidget {
             color: Color(0xFF554AF0), size: 24),
         title: const Text("Third Screen"),
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(milliseconds: 500));
-          controller.reset();
-        },
-        child: Obx(() => controller.users.isNotEmpty
-            ? ListView.builder(
-                controller: scrollController,
-                itemBuilder: (context, index) {
-                  if (index < controller.users.length) {
-                    return userItem(
-                        controller.users[index],
-                        () =>
-                            Get.back(result: controller.users[index].fullName));
-                  } else {
-                    return controller.hasMore.value
-                        ? const Center(child: CircularProgressIndicator())
-                        : const Center(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
-                              child: Text(
-                                "No More Data",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: SuitmediaColor.black,
-                                    fontWeight: FontWeight.w500),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            controller.reset();
+            await Future.delayed(const Duration(seconds: 1));
+          },
+          child: Obx(() => controller.users.isNotEmpty
+              ? ListView.builder(
+                  controller: scrollController,
+                  itemBuilder: (context, index) {
+                    if (index < controller.users.length) {
+                      return userItem(
+                          controller.users[index],
+                          () => Get.back(
+                              result: controller.users[index].fullName));
+                    } else {
+                      return controller.hasMore.value
+                          ? const Center(child: CircularProgressIndicator())
+                          : const Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: Text(
+                                  "No More Data",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: SuitmediaColor.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
-                            ),
-                          );
-                  }
-                },
-                itemCount: controller.users.length + 1,
-              )
-            : controller.isLoading.value
-                ? Skeletonizer(
-                    child: ListView(
-                    children:
-                        List.generate(10, (index) => userItem(dummyUser, null)),
-                  ))
-                : const Center(child: Text("No Data"))),
+                            );
+                    }
+                  },
+                  itemCount: controller.users.length + 1,
+                )
+              : controller.isLoading.value
+                  ? Skeletonizer(
+                      child: ListView(
+                      children: List.generate(
+                          10, (index) => userItem(dummyUser, null)),
+                    ))
+                  : const Center(child: Text("No Data"))),
+        ),
       ),
     );
   }
