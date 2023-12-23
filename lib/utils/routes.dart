@@ -1,6 +1,8 @@
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:suitmedia_test/bindings/third_screen_binding.dart';
 import 'package:suitmedia_test/views/pages/first_screen.dart';
 import 'package:suitmedia_test/views/pages/second_screen.dart';
+import 'package:suitmedia_test/views/pages/third_screen.dart';
 
 class Routes {
   static const String first = "/";
@@ -15,6 +17,11 @@ class Routes {
     GetPage(
       name: second,
       page: () => const SecondScreen(),
+    ),
+    GetPage(
+      name: third,
+      page: () => const ThirdScreen(),
+      binding: ThirdScreenBinding(),
     )
   ];
 }

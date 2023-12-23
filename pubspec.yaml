@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.4.0
   skeletonizer: ^0.8.0
   sizer: ^2.0.15
+  get_it: ^7.6.4
 
 dev_dependencies:
   flutter_test:

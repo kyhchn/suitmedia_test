@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
-import 'package:suitmedia_test/utils/constant/colors.dart';
+import 'package:suitmedia_test/injection_container.dart';
+import 'package:suitmedia_test/utils/colors.dart';
 import 'package:suitmedia_test/utils/routes.dart';
 
-void main() {
+void main() async {
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
@@ -20,6 +22,9 @@ class MyApp extends StatelessWidget {
         title: 'Suitmedia Test',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
+            shape: Border(
+              bottom: BorderSide(color: Color(0xFFE2E3E4), width: 0.5),
+            ),
             backgroundColor: Colors.white,
             elevation: 0,
             centerTitle: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:suitmedia_test/utils/constant/colors.dart';
+import 'package:suitmedia_test/utils/colors.dart';
+import 'package:suitmedia_test/utils/constant/constant.dart';
 
 class SuitmediaButton extends StatelessWidget {
   const SuitmediaButton({super.key, this.onPressed, required this.text});

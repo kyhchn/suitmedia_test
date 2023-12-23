@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:suitmedia_test/utils/constant/colors.dart';
+import 'package:suitmedia_test/utils/colors.dart';
+import 'package:suitmedia_test/utils/routes.dart';
 import 'package:suitmedia_test/views/widgets/suitmedia_button.dart';
 
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
+
+  @override
+  State<SecondScreen> createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  String userName = Get.arguments["userName"];
   @override
   Widget build(BuildContext context) {
-    final String userName = Get.arguments["userName"];
     return Scaffold(
       appBar: AppBar(
-        shape: Border(
+        shape: const Border(
           bottom: BorderSide(color: Color(0xFFE2E3E4), width: 0.5),
         ),
         leading: const Icon(Icons.arrow_back_ios,
@@ -28,7 +35,7 @@ class SecondScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Welcome',
                   style: TextStyle(
                       color: SuitmediaColor.black,
@@ -36,8 +43,8 @@ class SecondScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  'John Doe',
-                  style: TextStyle(
+                  userName,
+                  style: const TextStyle(
                       color: SuitmediaColor.black,
                       fontSize: 18,
                       fontWeight: FontWeight.w600),
@@ -47,16 +54,24 @@ class SecondScreen extends StatelessWidget {
             Center(
               child: Text(
                 userName,
-                style: TextStyle(
+                style: const TextStyle(
                     color: SuitmediaColor.black,
                     fontSize: 24,
                     fontWeight: FontWeight.w600),
               ),
             ),
             SuitmediaButton(
-              text: 'Choose a User',
-              onPressed: () => null,
-            )
+                text: 'Choose a User',
+                onPressed: () async {
+                  final result = await Get.toNamed(Routes.third,
+                      arguments: {"userName": userName});
+                  if (result != null) {
+                    print(result);
+                    setState(() {
+                      userName = result;
+                    });
+                  }
+                })
           ],
         ),
       ),
