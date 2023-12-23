@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
+import 'package:suitmedia_test/utils/routes.dart';
 import 'package:suitmedia_test/views/widgets/suitmedia_button.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -52,7 +55,17 @@ class _FirstScreenState extends State<FirstScreen> {
           ),
           SuitmediaButton(
             text: "NEXT",
-            onPressed: () => null,
+            onPressed: () {
+              final userName = _nameController.text;
+              if (userName.isEmpty) {
+                Get.snackbar("Error", "Name must be filled",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.white,
+                    margin: const EdgeInsets.all(16));
+                return;
+              }
+              Get.toNamed(Routes.second, arguments: {"userName": userName});
+            },
           )
         ],
       ),

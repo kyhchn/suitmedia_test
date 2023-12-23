@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:suitmedia_test/utils/constant/colors.dart';
 
 class SuitmediaButton extends StatelessWidget {
   const SuitmediaButton({super.key, this.onPressed, required this.text});
@@ -13,7 +13,7 @@ class SuitmediaButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF2B637B),
+            backgroundColor: SuitmediaColor.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

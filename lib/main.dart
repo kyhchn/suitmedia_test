@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
+import 'package:suitmedia_test/utils/constant/colors.dart';
 import 'package:suitmedia_test/utils/routes.dart';
 
 void main() {
@@ -18,12 +19,21 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Suitmedia Test',
         theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            titleTextStyle: TextStyle(
+                color: SuitmediaColor.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w600),
+          ),
           fontFamily: "Poppins",
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: true,
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              primary: const Color(0xFF2B637B),
+              primary: SuitmediaColor.primaryColor,
               padding: const EdgeInsets.symmetric(vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
